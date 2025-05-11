@@ -30,7 +30,23 @@
 ```bash
 $ npm install
 ```
+## Comandos de Instalação
 
+# Instalar Prisma ORM
+```
+npm install prisma --save-dev
+```
+# Instalar Prisma Client
+```
+npm install @prisma/client
+```
+
+## Outros comandos 
+
+# Executar as migrations
+```
+npx prisma migrate dev --name init
+```
 ## Compile and run the project
 
 ```bash
