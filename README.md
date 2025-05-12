@@ -40,6 +40,14 @@ npm install prisma --save-dev
 ```
 npm install @prisma/client
 ```
+# Instalar o bcrypt
+```
+npm i bcrypt
+```
+# Instalar os types do bcrypt
+```
+npm i -D @types/bcrypt
+```
 
 ## Outros comandos 
 
