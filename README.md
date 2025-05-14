@@ -48,7 +48,10 @@ npm i bcrypt
 ```
 npm i -D @types/bcrypt
 ```
-
+# Instalar os types do bcrypt
+```
+npm install --save @nestjs/jwt
+```
 ## Outros comandos 
 
 # Executar as migrations
