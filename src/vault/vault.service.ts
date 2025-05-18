@@ -10,10 +10,8 @@ export class VaultService {
   private readonly prisma: PrismaService;
 
   async create(createVaultDto: CreateVaultDto, userId: number) {
-    
     const encryptedPassword = encrypt(createVaultDto.password);
-
-    return await this.prisma.vault.create({
+    const createdVault = await this.prisma.vault.create({
       data: {
         title: createVaultDto.title,
         url: createVaultDto.url,
@@ -22,6 +20,11 @@ export class VaultService {
         userId: userId,
       },
     });
+
+    return {
+      message: 'Senha criada com sucesso!',
+      createdVault,
+    };
   }
 
   async findAll() {

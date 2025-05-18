@@ -21,8 +21,13 @@ export class UserController {
   @Post('signup')
   async signupUser(
     @Body() userData: Prisma.UserCreateInput,
-  ): Promise<UserModel> {
-    return this.userService.createUser(userData);
+  ): Promise<{ message: string; user: UserModel }> {
+    const createdUser = await this.userService.createUser(userData);
+
+    return {
+      message: 'Usuário criado com sucesso!',
+      user: createdUser,
+    };
   }
 
   @UseGuards(AuthGuard)
@@ -47,16 +52,26 @@ export class UserController {
   async updateUser(
     @Body() userData: Prisma.UserUpdateInput,
     @Param('id') id: string,
-  ): Promise<UserModel> {
-    return this.userService.updateUser({
+  ): Promise<{ message: string; user: UserModel }> {
+    const updatedUser = await this.userService.updateUser({
       where: { id: Number(id) },
       data: userData,
     });
+    return {
+      message: 'Usuário atualizado com sucesso!',
+      user: updatedUser,
+    };
   }
 
   @UseGuards(AuthGuard)
   @Delete(':id')
-  async deleteUser(@Param('id') id: string): Promise<UserModel> {
-    return this.userService.deleteUser({ id: Number(id) });
+  async deleteUser(
+    @Param('id') id: string,
+  ): Promise<{ message: string; user: UserModel }> {
+    const deletedUser = await this.userService.deleteUser({ id: Number(id) });
+    return {
+      message: 'Usuário apagado com sucesso!',
+      user: deletedUser,
+    };
   }
 }
