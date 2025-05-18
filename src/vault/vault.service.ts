@@ -8,8 +8,7 @@ export class VaultService {
   @Inject()
   private readonly prisma: PrismaService;
 
-  async create(createVaultDto: CreateVaultDto) {
-    const userId = 1;
+  async create(createVaultDto: CreateVaultDto, userId: number) {
     return await this.prisma.vault.create({
       data: { ...createVaultDto, userId },
     });

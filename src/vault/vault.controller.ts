@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { VaultService } from './vault.service';
 import { CreateVaultDto } from './dto/create-vault.dto';
@@ -19,8 +20,8 @@ export class VaultController {
 
   @Post()
   @UseGuards(AuthGuard)
-  create(@Body() createVaultDto: CreateVaultDto) {
-    return this.vaultService.create(createVaultDto);
+  create(@Body() createVaultDto: CreateVaultDto, @Request() req: any) {
+    return this.vaultService.create(createVaultDto, req.sub);
   }
 
   @Get()
