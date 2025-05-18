@@ -20,8 +20,8 @@ export class VaultController {
 
   @Post()
   @UseGuards(AuthGuard)
-  create(@Body() createVaultDto: CreateVaultDto, @Request() req: any) {
-    return this.vaultService.create(createVaultDto, req.sub);
+  async create(@Body() createVaultDto: CreateVaultDto, @Request() req: any) {
+    return this.vaultService.create(createVaultDto, req.user.sub);
   }
 
   @Get()
@@ -32,8 +32,8 @@ export class VaultController {
 
   @Get(':id')
   @UseGuards(AuthGuard)
-  findOne(@Param('id') id: string) {
-    return this.vaultService.findOne(+id);
+  findOne(@Param('id') id: string, @Request() req: any) {
+    return this.vaultService.findOne(+id, req.user.sub); // pega o id do usuário
   }
 
   @Patch(':id')
